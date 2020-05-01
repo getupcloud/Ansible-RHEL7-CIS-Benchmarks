@@ -258,13 +258,13 @@ cis_firewalld_install: { package: firewalld, state: present, service: firewalld,
 ## Configuration for the auditd.conf 
 # 4.1.1.1
 # Max log file in MB
-cis_max_log_file: 8
+cis_max_log_file: 10
 
 # 4.1.1.2
 ## Ensure System is disabled when audit logs are full
-cis_space_left_action: email # Default SYSLOG
+cis_space_left_action: keep_logs # Default SYSLOG
 cis_action_mail_acct: root # Default root
-cis_admin_space_left_action: halt # Default SUSPEND
+cis_admin_space_left_action: suspend # Default SUSPEND
 
 # 4.1.1.3
 ## Ensure Audit logs are not automatically deleted
@@ -278,16 +278,16 @@ cis_log_group: root
 cis_log_format: RAW
 cis_flush: INCREMENTAL_ASYNC
 cis_freq: 50
-cis_num_logs: 5
+cis_num_logs: 10
 cis_priority_boost: 4
 cis_disp_qos: lossy
 cis_dispatcher: /sbin/audispd
 cis_name_format: NONE
 ##cis_name: mydomain
-cis_space_left: 75
-cis_admin_space_left: 50
-cis_disk_full_action: SUSPEND
-cis_disk_error_action: SUSPEND
+cis_space_left: 80%
+cis_admin_space_left: 90%
+cis_disk_full_action: suspend
+cis_disk_error_action: suspend
 cis_use_libwrap: "yes"
 ##cis_tcp_listen_port:  
 cis_tcp_listen_queue: 5
